@@ -1,18 +1,23 @@
 #include "palestrante.h"
-#include "mystring.h"
+#include "tools/ext_string.h"
+
+#include <stdlib.h>
 
 palestrante *cria_palestrante (char *nome, int matricula){
-    char        *n;
-    palestrante   *p;
+    char		*n;
+    palestrante	*p;
 
     p = malloc (sizeof(palestrante));
 
     if (!p)
         return NULL;
 
-    n = newString( strlen(nome) );
+    n = cloneString(nome);
 
-    strcpy (nome, n);
+    if (!n){
+        free(p);
+        return NULL;
+    }
 
     p->nome = n;
     p->matricula = matricula;
@@ -21,6 +26,6 @@ palestrante *cria_palestrante (char *nome, int matricula){
 }
 
 void *remove_palestrante (palestrante *p){
-    delString(p->nome);
+    free(p->nome);
     free(p);
 }

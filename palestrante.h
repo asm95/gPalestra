@@ -9,4 +9,4 @@ typedef struct palestrante {
 palestrante     *cria_palestrante     (char *nome, int matricula);
 void            *remove_palestrante   (palestrante *p);
 
-#endif // PROFESSOR_H_INCLUDED
+#endif

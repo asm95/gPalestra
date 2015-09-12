@@ -1,11 +1,13 @@
 #include "ext_string.h"
 #include "str_tree.h"
 
+#include <stdlib.h>
+
 str_node *dic_new (){
     return NULL;
 }
 
-WORD *dic_add (str_node **node, char str[]){
+str_node *dic_add (str_node **node, char str[]){
     str_node	**wrd_cur;
     int     	r;
 
@@ -15,7 +17,7 @@ WORD *dic_add (str_node **node, char str[]){
         if (!(*wrd_cur))
             break;
 
-        r = strcmp(str, (*wrd_cur)->str);
+        r = strcmp(str, (*wrd_cur)->self);
 
         if (r==0)
             return (*wrd_cur);
@@ -27,10 +29,9 @@ WORD *dic_add (str_node **node, char str[]){
 
     }
 
-    *wrd_cur = (WORD *) malloc (sizeof (WORD));
+    *wrd_cur = (str_node *) malloc (sizeof (str_node));
 
-    (*wrd_cur)->str = str;
-    (*wrd_cur)->pos = pos;
+    (*wrd_cur)->self = str;
 
     (*wrd_cur)->left = NULL;
     (*wrd_cur)->right = NULL;
@@ -60,7 +61,7 @@ str_node *dic_find (str_node *node, char str[]){
     if (!node)
         return NULL;
 
-    r = strcmp(str, node->str);
+    r = strcmp(str, node->self);
 
     if (!r)
         return node;

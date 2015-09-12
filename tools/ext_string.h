@@ -1,6 +1,8 @@
 #ifndef MYSTRING_H_INCLUDED
 #define MYSTRING_H_INCLUDED
 
+typedef unsigned long size_t; /* stddef.h */
+
 char    *cloneString    (char *s);
 char    *strcpy         (char *orig, char *dest);
 int     strlen          (const char *s);
