@@ -17,4 +17,4 @@ int 		dic_empty 	(str_node *node);
 
 str_node 	*dic_find 	(str_node *node, char str[]);
 
-#endif // STR_TREE_H_INCLUDED
+#endif

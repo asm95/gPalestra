@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="gPalestra" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/gPalestra" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-fno-builtin-strlen" />
+					<Add option="-I ./teste" />
+					<Add option="-DDEBUG" />
+				</Compiler>
+				<Linker>
+					<Add library="/home/cristian/Desktop/mesa/libcunit.a" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/gPalestra" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="CUnit/Automated.h" />
+		<Unit filename="CUnit/Basic.h" />
+		<Unit filename="CUnit/CUError.h" />
+		<Unit filename="CUnit/CUnit.h" />
+		<Unit filename="CUnit/Console.h" />
+		<Unit filename="CUnit/MyMem.h" />
+		<Unit filename="CUnit/TestDB.h" />
+		<Unit filename="CUnit/TestRun.h" />
+		<Unit filename="CUnit/Util.h" />
+		<Unit filename="e_dados.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="palestrante.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="palestrante.h" />
+		<Unit filename="teste/t_palestrante.c">
+			<Option compilerVar="CC" />
+			<Option compile="0" />
+			<Option link="0" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="teste/teste.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="teste/teste.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="tools/ext_string.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="tools/ext_string.h" />
+		<Unit filename="tools/list.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="tools/list.h" />
+		<Unit filename="tools/str_tree.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="tools/str_tree.h" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

@@ -1,0 +1,100 @@
+# depslib dependency file v1.0
+1442038212 source:/home/cristian/Desktop/gPalestra/main.c
+	"teste/teste.h"
+	<stdio.h>
+	<stdlib.h>
+
+1442035758 /home/cristian/Desktop/gPalestra/teste/teste.h
+	"../CUnit/CUnit.h"
+	"../CUnit/Basic.h"
+
+1442686292 source:/home/cristian/Desktop/gPalestra/tools/ext_string.c
+	<stdlib.h>
+	"ext_string.h"
+
+1442686324 /home/cristian/Desktop/gPalestra/tools/ext_string.h
+
+1442033328 source:/home/cristian/Desktop/gPalestra/palestrante.c
+	"palestrante.h"
+	"tools/ext_string.h"
+	<stdlib.h>
+
+1442031237 /home/cristian/Desktop/gPalestra/palestrante.h
+
+1442033468 source:/home/cristian/Desktop/gPalestra/tools/str_tree.c
+	"ext_string.h"
+	"str_tree.h"
+	<stdlib.h>
+
+1442678987 /home/cristian/Desktop/gPalestra/tools/str_tree.h
+
+1441311370 /home/cristian/Desktop/gPalestra/CUnit/CUnit.h
+	<string.h>
+	<math.h>
+	"CUError.h"
+	"TestDB.h"
+	"TestRun.h"
+
+1441311370 /home/cristian/Desktop/gPalestra/CUnit/CUError.h
+	<errno.h>
+	"CUnit.h"
+
+1441311370 /home/cristian/Desktop/gPalestra/CUnit/TestDB.h
+	<setjmp.h>
+	"CUnit.h"
+	"CUError.h"
+
+1441311370 /home/cristian/Desktop/gPalestra/CUnit/TestRun.h
+	"CUnit.h"
+	"CUError.h"
+	"TestDB.h"
+
+1441311370 /home/cristian/Desktop/gPalestra/CUnit/Basic.h
+	"CUnit.h"
+	"TestDB.h"
+
+1442036752 source:/home/cristian/Desktop/gPalestra/teste/teste.c
+	"teste.h"
+	"t_palestrante.c"
+
+1442684563 /home/cristian/Desktop/gPalestra/teste/t_palestrante.c
+	"../core/palestrante.h"
+
+1442685176 source:/home/cristian/Desktop/gPalestra/core/leia.c
+	<stdio.h>
+	"leia.h"
+	"../tools/list.h"
+	"../tools/s_stream.h"
+	"../tools/ext_string.h"
+
+1442684893 /home/cristian/Desktop/gPalestra/core/leia.h
+	"palestrante.h"
+	"../tools/s_stream.h"
+
+1442686381 /home/cristian/Desktop/gPalestra/core/palestrante.h
+	"calendario.h"
+
+1442686183 /home/cristian/Desktop/gPalestra/tools/s_stream.h
+	<stdio.h>
+
+1442038654 /home/cristian/Desktop/gPalestra/tools/list.h
+
+1442684531 source:/home/cristian/Desktop/gPalestra/core/palestrante.c
+	"palestrante.h"
+	"../tools/ext_string.h"
+	<stdlib.h>
+
+1442038654 source:/home/cristian/Desktop/gPalestra/tools/list.c
+	<stdio.h>
+	<stdlib.h>
+	"list.h"
+
+1442686249 source:/home/cristian/Desktop/gPalestra/tools/s_stream.c
+	<stdio.h>
+	<stdlib.h>
+	<stdarg.h>
+	"s_stream.h"
+	"ext_string.h"
+
+1442684382 /home/cristian/Desktop/gPalestra/core/calendario.h
+

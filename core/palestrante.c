@@ -1,9 +1,9 @@
 #include "palestrante.h"
-#include "tools/ext_string.h"
+#include "../tools/ext_string.h"
 
 #include <stdlib.h>
 
-palestrante *cria_palestrante (char *nome, int matricula){
+palestrante *novo_palestrante (char *nome, evento *l_disp){
     char		*n;
     palestrante	*p;
 
@@ -20,12 +20,11 @@ palestrante *cria_palestrante (char *nome, int matricula){
     }
 
     p->nome = n;
-    p->matricula = matricula;
 
     return p;
 }
 
-void *remove_palestrante (palestrante *p){
+void remove_palestrante (palestrante *p){
     free(p->nome);
     free(p);
 }

@@ -5,6 +5,10 @@ char *cloneString (char *s){
     return strcpy (s, (char *)malloc(strlen(s) * sizeof(char)) );
 }
 
+void delString(char *s){
+    free(s);
+}
+
 char *strcpy (char *orig, char *dest)
 {
     int i=0;
@@ -97,4 +101,12 @@ void* memcpy(void* dest, const void* src, size_t count)
         *dst8++ = *src8++;
     }
     return dest;
+}
+
+int strcountc(const char *s, char c)
+{
+    int i, j;
+    for(i=j=0; s[i] != '\0'; i++)
+        if (s[i] == c) j++;
+    return j;
 }
