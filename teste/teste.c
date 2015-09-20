@@ -18,9 +18,10 @@ int cunit_init (){
 }
 
 void adicionar_testes (){
+    char name[20] = "Teste Palestrante";
     CU_pSuite suite;
 
-    suite = CU_add_suite("Teste Palestrante", NULL, NULL);
+    suite = CU_add_suite(name, NULL, NULL);
 
     CU_ADD_TEST(suite, tp_cria);
 }

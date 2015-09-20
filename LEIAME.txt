@@ -1,0 +1,43 @@
+			**   Manual do gPalestra  **
+			**		                  **
+			****************************
+
+** Este programa poderá ser reutilizado para qualquer fim não lucrativo **
+** Favor, citar autores: Cristiano Cardoso, Marcos Moura,               ** 
+** Márcia Andréa e Lucas                                                **
+** Dedicado à professora Genaina, da UnB (Universidade de Brasília)     **
+***                                                                    ***
+
+
+-- 1. Como usar --
+! No terminal de sua máquina, use a seguinte sintaxe:
+	gpalestra
+	
+! O programa irá ler do arquivo Palestrantes.txt e Palestras.txt a fim de
+gerar um arquivo saída ao usuário contendo uma lista, em ordem cronológica,
+das palestras a serem realizadas.
+	
+...
+	
+
+-- 2. Como Compilar --
+! Recomenda-se usar o gcc nesta versão:
+cristian@Jasmine-VM:~$ gcc --version
+gcc (Ubuntu/Linaro 4.8.1-10ubuntu9) 4.8.1
+
+! No terminal, vá até a pasta do programa e use o comando make para compila-lo
+automaticamente.
+
+
+-- 3. Versões --
+0.1 - 	Primeira versão do gPalesta! Só lê os dados e diz o que foi lido na
+tela (infelizmente).
+
+
+-- 4. Informações Extras --
+...
+
+
+Considera-se que o 'TP1' de Programação Sistematica ainda precisa de
+reparos.
+

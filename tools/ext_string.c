@@ -2,14 +2,14 @@
 #include "ext_string.h"
 
 char *cloneString (char *s){
-    return strcpy (s, (char *)malloc(strlen(s) * sizeof(char)) );
+    return cpystr (s, (char *)malloc(strlen(s) * sizeof(char)) );
 }
 
 void delString(char *s){
     free(s);
 }
 
-char *strcpy (char *orig, char *dest)
+char *cpystr (char *orig, char *dest)
 {
     int i=0;
     while( (dest[i] = orig[i]) )

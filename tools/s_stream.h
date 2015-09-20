@@ -16,6 +16,7 @@ typedef struct s_stream {
     FILE    *in;
     char    *self;
     int     bsize;
+    int     bread;
 } s_stream;
 
 s_stream    *newStream          (char *f_loc, size_t buf_size);

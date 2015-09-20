@@ -7,6 +7,10 @@
 
 #define STR_END(s, pos) (s[pos] == '\0')
 
+
+int stream_str_in_call (s_stream *s, char *pattern);
+
+
 s_stream *newStream (char *f_loc, size_t buf_size){
     FILE        *in;
     char        *buf = NULL;
@@ -27,6 +31,8 @@ s_stream *newStream (char *f_loc, size_t buf_size){
         return NULL;
     }
 
+    buf[0] = '\0';
+
     new->in = in;
     new->self = buf;
     new->bsize = buf_size+1;
@@ -45,7 +51,7 @@ size_t stream_read (s_stream *s, int offset){
     int     from;
     size_t  elem;
 
-    from = s->bsize - s->bpos;
+    from = s->bread - s->bpos;
 
     fseek(s->in, -from + offset, SEEK_CUR);
 
@@ -53,19 +59,20 @@ size_t stream_read (s_stream *s, int offset){
 
     s->self[elem+1] = '\0';
     s->bpos = 0;
+    s->bread = elem;
 
     return elem;
 }
 
 int streamGetPattern (s_stream *s, const char *pattern, ...){
-    char    *s_pat;                 /* multable pattern pointer */
+    char    *s_pat, *bs_pat; /* multable pattern pointer */
     int     argsN, foundN;
     int     result, pos;
     va_list ap;
 
 
     argsN = strcountc(pattern, '%');
-    s_pat = pattern;
+    bs_pat = s_pat = cloneString((char*)pattern);
 
 
     /* check if we didn't stopped at end of stream buffer, otherwise it'll not read again */
@@ -83,7 +90,6 @@ int streamGetPattern (s_stream *s, const char *pattern, ...){
 
             s_pat[pos] = '\0';
             result = stream_str_in_call(s, s_pat);
-            s_pat[pos] = '%';
 
             if (result == STREAM_NOT_FOUND || result == STREAM_READ_ERROR)
                 return foundN;
@@ -116,23 +122,30 @@ int streamGetPattern (s_stream *s, const char *pattern, ...){
                 case '[':
                     if ( s_pat[2] == ']' ){
                         int     bpos;
-                        char    *snew, *arg;
+                        char    *snew, **arg;
 
 
-                        stream_read(s, -1);
-                        bpos = streamFindNext(s, s_pat[1]);
+                        stream_read(s, 0);
+                        bpos = strfind(s->self, s_pat[1]);
 
-                        if (bpos){
+                        if (bpos != -1){
                             snew = malloc ( sizeof(char) * (bpos - (s->bpos) ) );
 
                             if (snew){
                                 arg = va_arg(ap, char**);
+
+                                s->self[bpos] = '\0';
+                                cpystr(s->self, snew);
+                                s->self[bpos] = s_pat[1];
+
                                 *arg = snew;
                             }else
                                 return foundN;
+
+                            s->bpos = bpos+1;
                         }
 
-                        s_pat++;
+                        s_pat += 2;
                     }
             }
             s_pat++;
@@ -141,11 +154,12 @@ int streamGetPattern (s_stream *s, const char *pattern, ...){
         va_end(ap);
     }
 
+    delString(bs_pat);
 
     return stream_str_in_call(s, s_pat);
 }
 
-int stream_str_in_call (s_stream *s, const char *pattern){
+int stream_str_in_call (s_stream *s, char *pattern){
     /* find simple pattern in buffer */
     int     i, k, bsize;
     char    *buf;
@@ -176,7 +190,7 @@ int stream_str_in_call (s_stream *s, const char *pattern){
                 }
 
                 if ( STR_END(pattern, k+1) ){
-                    s->bpos = i+k;
+                    s->bpos = i+k+1;
                     return s->bpos;
                 }
 

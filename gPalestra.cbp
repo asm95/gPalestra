@@ -3,11 +3,14 @@
 	<FileVersion major="1" minor="6" />
 	<Project>
 		<Option title="gPalestra" />
+		<Option makefile="makefile" />
+		<Option makefile_is_custom="1" />
+		<Option execution_dir="/home/cristian/Desktop/gPalestra" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="bin/Debug/gPalestra" prefix_auto="1" extension_auto="1" />
+				<Option output="gpalestra" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -46,16 +49,34 @@
 		<Unit filename="CUnit/TestDB.h" />
 		<Unit filename="CUnit/TestRun.h" />
 		<Unit filename="CUnit/Util.h" />
-		<Unit filename="e_dados.h">
+		<Unit filename="core/calendario.c">
+			<Option compilerVar="CC" />
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
+		<Unit filename="core/calendario.h" />
+		<Unit filename="core/filtra.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="core/filtra.h" />
+		<Unit filename="core/leia.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core/leia.h" />
+		<Unit filename="core/palestra.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="core/palestra.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="core/palestrante.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core/palestrante.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="palestrante.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="palestrante.h" />
 		<Unit filename="teste/t_palestrante.c">
 			<Option compilerVar="CC" />
 			<Option compile="0" />
@@ -72,17 +93,26 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="tools/ext_string.h" />
+		<Unit filename="tools/ext_time.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="tools/list.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="tools/list.h" />
+		<Unit filename="tools/s_stream.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="tools/s_stream.h" />
 		<Unit filename="tools/str_tree.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="tools/str_tree.h" />
 		<Extensions>
 			<code_completion />
-			<debugger />
+			<debugger>
+				<search_path add="/home/cristian/Desktop/gPalestra" />
+			</debugger>
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

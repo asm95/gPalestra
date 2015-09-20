@@ -3,9 +3,11 @@
 
 #include "calendario.h"
 
+#include "../tools/list.h"
+
 typedef struct palestrante {
     char    *nome;
-    evento  *l_disp;
+    lnode   *l_disp;
 } palestrante;
 
 palestrante     *novo_palestrante   (char *nome, evento *l_disp);
