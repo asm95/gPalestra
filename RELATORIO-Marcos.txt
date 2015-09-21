@@ -1,4 +1,6 @@
  Data      | Horas Trabalhadas | Tipo Tarefa                           | Descrição da Tarefa Realizada
 -----------|-------------------|---------------------------------------|------------------------------------
- Set 17-20 | 11                | Estudar, Projetar e Codificar Módulos | Insana, porém insifuciente
-                                 de leitura e filtragem de dados .txt    (motivo: sem tempo)
+								 
+*--------Matricula------*
+*				        *
+*-----------------------*
