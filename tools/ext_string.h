@@ -6,7 +6,7 @@ typedef unsigned long size_t; /* stddef.h */
 char    *cloneString    (char *s);
 void    delString       (char *s);
 char    *cpystr         (char *orig, char *dest);
-int     strlen          (const char *s);
+int     lenstr          (const char *s);
 int     strfind         (char *s, char c);
 int     strfindN        (char *s, char c, int pos);
 int     strcmp          (char *s1, char *s2);

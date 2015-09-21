@@ -86,3 +86,14 @@ void list_print(lnode *head, void(*f)(void *)){
         cur = cur->next;
     }
 }
+
+void *list_get (lnode *cur){
+    if (!cur)
+        return cur;
+
+    return cur->data;
+}
+
+void list_next (lnode **cur){
+    *cur = (*cur)->next;
+}

@@ -7,9 +7,11 @@
  ** please use up stream functions, otherwise it may confuse its engine
  **/
 
-#define STREAM_NOT_FOUND -1
-#define STREAM_READ_ERROR -2
-#define STREAM_NO_MEMORY -3
+#define STREAM_NOT_FOUND    -1
+#define STREAM_READ_ERROR   -2
+#define STREAM_NO_MEMORY    -3
+#define PATTERN_EMPTY       -4
+#define STREAM_SIZE         -5
 
 typedef struct s_stream {
     int     bpos;
@@ -24,9 +26,11 @@ void        delStream           (s_stream *s);
 size_t      stream_read         (s_stream *s, int offset);
 int         streamGetPattern    (s_stream *s, const char *pattern, ...);
 int         streamFindNext      (s_stream *s, char c);
-char        streamGetChar       (s_stream *s);
-int         streamGetNumber     (s_stream *s);
+int         streamGetChar       (s_stream *s, char *c);
+int         streamGetNumber     (s_stream *s, int *num);
 int         EOStream            (s_stream *s);
 int         streamGetPos        (s_stream *s);
+char        streamFindChars     (s_stream *s, char *vec, int max);
+int         streamJump          (s_stream *s, int i);
 
 #endif

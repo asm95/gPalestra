@@ -23,4 +23,8 @@ void    list_remove     (lnode **head, lnode *cur, void(*f)(void *) );
 
 void    list_print      (lnode *head, void(*f)(void *) );
 
+void    list_next       (lnode **cur);
+
+void    *list_get       (lnode *cur);
+
 #endif /* LIST_H_INCLUDED */

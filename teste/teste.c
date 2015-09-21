@@ -1,6 +1,8 @@
 #include "teste.h"
+#include "../core/leia.h"
 
 #include "t_palestrante.c"
+#include "t_palestra.c"
 
 int cunit_init (){
 	if (CUE_SUCCESS != CU_initialize_registry())
@@ -24,4 +26,8 @@ void adicionar_testes (){
     suite = CU_add_suite(name, NULL, NULL);
 
     CU_ADD_TEST(suite, tp_cria);
+    CU_ADD_TEST(suite, tp_leia);
+
+    CU_ADD_TEST(suite, tp1_cria);
+    CU_ADD_TEST(suite, tp1_leia);
 }

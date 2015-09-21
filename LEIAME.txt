@@ -17,8 +17,6 @@
 gerar um arquivo saída ao usuário contendo uma lista, em ordem cronológica,
 das palestras a serem realizadas.
 	
-...
-	
 
 -- 2. Como Compilar --
 ! Recomenda-se usar o gcc nesta versão:
@@ -35,7 +33,13 @@ tela (infelizmente).
 
 
 -- 4. Informações Extras --
-...
+Muita coisa pra fazer, só a parte de leitura já foi uma dor de cabeça. O programa
+já ficou imenso só nesta parte. Porém já tem muita base pra se desenvolver
+futuramente, como módulos para criação e manipulação de streams, listas e
+dicionários. Como já foi feito a parte de entrada, a de saída seria análoga.
+Há muita coisa repetida no código (parte de uso destes módulos base), mas
+vão que ser enxugadas futuramente. Algo foi feito na corrida (aprox. 13 horas
+de trabalho) porque há muita outas coisas pra se preocupar na UnB.
 
 
 Considera-se que o 'TP1' de Programação Sistematica ainda precisa de

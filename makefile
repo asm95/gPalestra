@@ -12,7 +12,7 @@ all: programa limpa
 Debug: programa limpa
 
 programa: $(PRGMA_O) $(TOOLS_O) $(DEBUG_O)
-	$(CC) $(PRGMA_O) $(TOOLS_O) $(DEBUG_O) $(CLIBS) -g -o gpalestra
+	$(CC) -g $(PRGMA_O) $(TOOLS_O) $(DEBUG_O) $(CLIBS) -o gpalestra
 
 
 main.o: main.c

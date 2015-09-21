@@ -7,6 +7,9 @@
 
 #define STR_END(s, pos) (s[pos] == '\0')
 
+#define isNumber(c)  (c >= '0' && c <= '9')
+#define isSign(c)    (c == '-' || c == '+')
+
 
 int stream_str_in_call (s_stream *s, char *pattern);
 
@@ -93,32 +96,54 @@ int streamGetPattern (s_stream *s, const char *pattern, ...){
 
             if (result == STREAM_NOT_FOUND || result == STREAM_READ_ERROR)
                 return foundN;
+            else if ( result != PATTERN_EMPTY )
+                foundN++;
 
             s_pat += pos+1;
             switch ( *s_pat ){
                 case 'd':
                 case 'D':
                     {
-                        int *arg;
+                        int *arg, num;
 
                         arg = va_arg(ap, int*);
-                        *arg = streamGetNumber(s);
+
+                        if ( streamGetNumber(s, &num) ){
+                            *arg = num;
+                            foundN++;
+                        }
+                        else{
+                            delString(bs_pat);
+                            return foundN;
+                        }
                     }
                     break;
 
                 case 'c':
                 case 'C':
                     {
-                        char *arg;
+                        char *arg, c;
 
                         arg = va_arg(ap, char*);
-                        *arg = streamGetChar(s);
+
+                        if ( streamGetChar(s, &c) ){
+                            *arg = c;
+                            foundN++;
+                        }
+                        else{
+                            delString(bs_pat);
+                            return foundN;
+                        }
                     }
                     break;
 
                 case 'f':
                 case 'F':
+                    {
                     /* _not_implemented_ */
+                    }
+                    break;
+
                 case '[':
                     if ( s_pat[2] == ']' ){
                         int     bpos;
@@ -139,10 +164,18 @@ int streamGetPattern (s_stream *s, const char *pattern, ...){
                                 s->self[bpos] = s_pat[1];
 
                                 *arg = snew;
-                            }else
+                                foundN++;
+                            }
+                            else{
+                                delString(bs_pat);
                                 return foundN;
+                            }
 
                             s->bpos = bpos+1;
+                        }
+                        else{
+                            delString(bs_pat);
+                            return foundN;
                         }
 
                         s_pat += 2;
@@ -153,50 +186,60 @@ int streamGetPattern (s_stream *s, const char *pattern, ...){
 
         va_end(ap);
     }
+    else
+    {
+        return stream_str_in_call(s, s_pat);
+    }
 
-    delString(bs_pat);
+    result = stream_str_in_call(s, s_pat);
 
-    return stream_str_in_call(s, s_pat);
+    if ( result ){
+        delString(bs_pat);
+        return foundN + ( (result!=PATTERN_EMPTY)?1:0 );
+    }
+    else{
+        delString(bs_pat);
+        return 0;/* we are just indicating that the pattern does not match, but
+        the previous variables were already set. Should fix this. */
+    }
+
 }
 
 int stream_str_in_call (s_stream *s, char *pattern){
     /* find simple pattern in buffer */
-    int     i, k, bsize;
+    int     i, k;
     char    *buf;
 
-    if (pattern == '\0')
-        return 0;
+    if (*pattern == '\0')
+        return PATTERN_EMPTY;
 
-    bsize = s->bsize;
     buf = s->self;
     i = s->bpos;
 
-    /* COMPLICATED! */
-    while ( i<bsize ){
-        if ( buf[i] == pattern[0] )
-            for(k=1; ; k++){
-                if ( STR_END(buf, i+k) ){
-                    /* read more from buffer and continue from where it stopped */
-                    if ( !stream_read(s, -k-1) ){
-                        printf("Error in: stream_str_in_call. Could not read from file.\n");
-                        return STREAM_READ_ERROR;
-                    }
-                    i = 0;
-                }
+    if ( buf[i] != pattern[0] )
+        return STREAM_NOT_FOUND;
 
-                if ( buf[i+k] != pattern[k] ){
-                    s->bpos = i+k;
-                    return STREAM_NOT_FOUND;
-                }
+	for(k=1; ; k++){
 
-                if ( STR_END(pattern, k+1) ){
-                    s->bpos = i+k+1;
-                    return s->bpos;
-                }
+		if ( STR_END(pattern, k) ){
+			s->bpos = i+k;
+			return s->bpos;
+		}
 
-            }
-        i++;
-    }
+		if ( STR_END(buf, i+k) ){
+			/* read more from buffer and continue from where it stopped */
+			if ( !stream_read(s, -k-1) ){
+				printf("Error in: stream_str_in_call. Could not read from file.\n");
+				return STREAM_READ_ERROR;
+			}
+			i = 0;
+		}
+
+		if ( buf[i+k] != pattern[k] ){
+			s->bpos = i+k;
+			return STREAM_NOT_FOUND;
+		}
+	}
 
     s->bpos = i;
     return STREAM_NOT_FOUND;
@@ -207,58 +250,105 @@ int streamFindNext (s_stream *s, char c){
 
     pos = strfind(s->self + s->bpos, c);
 
-    s->bpos += pos;
+    if ( pos != -1 ){
+        s->bpos += pos;
+        return s->bpos;
+    }
 
-    return (pos!=-1) ? (s->bpos) : -1;
+    return STREAM_NOT_FOUND;
 }
 
-char streamGetChar (s_stream *s){
+int streamGetChar (s_stream *s, char *c){
 
     s->bpos += 1;
 
     if ( s->bpos == s->bsize ){
-        stream_read(s, 0);
+        if ( !stream_read(s, 0) )
+            return 0;
+
         s->bpos = 1;
     }
 
-    return s->self[s->bpos-1];
+    *c = s->self[s->bpos-1];
+
+    return 1;
 }
 
-int streamGetNumber (s_stream *s){
-    int i, res;
+int streamGetNumber (s_stream *s, int *num){
+    int     i, res;
+    char    *pat;
 
-    char *s_pat;
-
-    s_pat = s->self;
+    pat = s->self;
     i = s->bpos;
 
-    if (s_pat[i] == '-' || s_pat[i] == '+')
-        i = i+1;
+    if ( !isNumber(pat[i]) )
+        return 0;
+
+    if ( isSign(pat[i]) ){
+
+        if ( !isNumber(pat[i+1]) )
+            return 0;
+        else
+            i = i+1;
+    }
 
     res = 0;
     while ( 1 ){
-        if ( s_pat[i] == '\0' )
+        if ( pat[i] == '\0' )
             stream_read(s, 0);
 
-        if ( s_pat[i] < '0' || s_pat[i] > '9' )
+        if ( pat[i] < '0' || pat[i] > '9' )
             break;
 
-        res = res*10 + s_pat[i]-'0';
+        res = res*10 + pat[i]-'0';
 
         i++;
     }
 
-    res *= (s_pat[s->bpos] == '-') ? -1 : 1;
+    res = res * ( (pat[s->bpos] == '-') ? -1 : 1 );
 
-    s->bpos += i;
+    s->bpos = i;
 
-    return res;
+    *num = res;
+
+    return 1;
 }
 
 int EOStream(s_stream *s){
-    return feof(s->in);
+    return ( s->self[s->bpos] == '\0' && feof(s->in) );
 }
 
 int streamGetPos (s_stream *s){
     return s->bpos;
+}
+
+int streamJump (s_stream *s, int i){
+    if ( i == STREAM_SIZE ){
+        s->bpos = s->bread+1;
+        return 1;
+    }
+
+    s->bpos = (s->bpos+i)%(s->bsize-1);
+
+    if (s->bpos < 0)
+        s->bpos = 0;
+    return 1;
+}
+
+char streamFindChars (s_stream *s, char *vec, int max){
+    char    *buf;
+    int     i, j, bmax;
+
+    buf = s->self;
+    i = s->bpos;
+    bmax = s->bread;
+
+    for (; i<bmax; i++)
+        for(j=0; j<max; j++)
+            if ( buf[i] == vec[j] ){
+                s->bpos = i;
+                return vec[j];
+            }
+
+    return '\0';
 }
