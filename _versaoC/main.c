@@ -5,10 +5,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "tools/list.h"
-#include "core/palestrante.h"
-#include "core/leia.h"
-
 int main (void){
 
     /* malha de testes */

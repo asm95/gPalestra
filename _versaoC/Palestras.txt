@@ -8,3 +8,4 @@ Palestrante: Palestrante2.
 Tema: TemaPalestra2.
 Local: Local2.
 Duracao: 1:00h.
+
