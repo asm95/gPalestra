@@ -5,18 +5,17 @@ import java.util.LinkedList;
 
 import modulos.Calendario;
 import modulos.ControleTempo;
-import modulos.Leitura;
-import modulos.Palestra;
-import modulos.Palestrante;
 import modulos.Persistencia;
+import palestra.Palestra;
+import palestrante.Palestrante;
 
 public class Principal {
 	
 	public static void main(String[] args) {
 
-		LinkedHashMap<String,Palestrante> palestrantes = Leitura.lePalestrantes("Palestrantes.txt");
+		LinkedHashMap<String,Palestrante> palestrantes = Palestrante.lePalestrantes("Palestrantes.txt");
 		
-		LinkedList<Palestra> palestras = Leitura.lePalestras("Palestras.txt", palestrantes);
+		LinkedList<Palestra> palestras = Palestra.lePalestras("Palestras.txt", palestrantes);
 		
 		Calendario calendario = ControleTempo.organizaPalestras(palestras);
 		

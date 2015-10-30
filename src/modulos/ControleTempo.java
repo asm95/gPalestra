@@ -5,6 +5,8 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 
+import palestra.Palestra;
+
 public class ControleTempo {
 
 	public static Calendario organizaPalestras(LinkedList<Palestra> palestras) {

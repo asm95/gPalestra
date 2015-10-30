@@ -1,7 +1,0 @@
-Calendario de Palestras (09/2015)
-
-Mes 09/2015
-
-Dia 01
-NomePalestra1 (Palestrante1): 10:00-12:00.
-NomePalestra2 (Palestrante2): 12:00-14:00.

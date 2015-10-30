@@ -2,6 +2,9 @@ package modulos;
 
 import java.time.LocalDateTime;
 
+import palestra.Palestra;
+import palestrante.Palestrante;
+
 public class HoraCalendario {
 
 	private LocalDateTime dataHoraInicio;
