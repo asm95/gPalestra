@@ -10,44 +10,48 @@
 
 -- 0. Observações --
 ! Este arquivo contém informações básicas sobre o projeto. Peçamos que 
-seja lido, sem falta, o arquivo "Relatório TP2.pdf". Isso porque nele
+seja lido, sem falta, o arquivo "Relatório TP1.pdf". Isso porque nele
 há informações detalhadas e de fácil leitura sobre o projeto. Acreditamos
 que sim o arquivo de texto puro deve ser amplamente usado em programas 
 de cunho profissional por conta de sua acessibilidade. Porém, com intuito 
 de facilitar a interação alunos-monitor peçamos que seja feita a leitura
 do pdf.
 
--- 1. Como Compilar --
-Não se esqueça de:
+-- 1. Como usar --
+! Versão C:
+ -No terminal de sua máquina, use a seguinte sintaxe:
+	gpalestra
+	
+! Versão Java:
+ -Compile e rode o programa no Eclipse
+	
+! O programa irá ler do arquivo Palestrantes.txt e Palestras.txt a fim de
+gerar um arquivo saída ao usuário contendo uma lista, em ordem cronológica,
+das palestras a serem realizadas.
+	
+
+-- 2. Como Compilar --
+! Recomenda-se usar o gcc nesta versão:
+cristian@Jasmine-VM:~$ gcc --version
+gcc (Ubuntu/Linaro 4.8.1-10ubuntu9) 4.8.1
+
+! Para a versão C, vá até a pasta _versaoC e use makefile para compilar
+automaticamente.
+
+! Para a versão Java, não se esqueça de:
+
 a) Possuir o JDK 8. Para instalar utilize os seguintes comandos:
 
 sudo add-apt-repository ppa:webupd8team/java
 sudo apt-get update
 sudo apt-get install oracle-java8-installer
 
-b) Possuir a IDE Eclipse Mars 1. Faça o download do instalador em:
+b) Possuir a IDE Eclipse. Faça o download em:
 
-http://www.eclipse.org/downloads/index.php?show_instructions=TRUE
+https://eclipse.org/downloads/
 
-c) Importar o projeto no Eclipse:
-> Abra o Eclipse
-> Vá em File > Import > Existing projects into workspace
-> Selecione a pasta onde você extraiu o arquivo .zip
-
-Obs: Certifique-se que os arquivos .classpath e .project estejam na raiz
-da pasta extraida. Caso contrário, o projeto não poderá ser executado.
-
-Obs: As dependências são o JUnit 4 e JRE 8.
-
--- 2. Como usar --
-a) Após importado o projeto no Eclipse
-
-
-	
-! O programa irá ler do arquivo Palestrantes.txt, Palestras.txt e Localidades.txt
-na raiz do  a fim de
-gerar um arquivo saída ao usuário contendo uma lista, em ordem cronológica,
-das palestras a serem realizadas.
+c) Incluir a pasta raiz do programa em workspace e criar um novo Java Project
+com o mesmo nome da pasta extraida em seu computador a partir do zip.
 
 
 -- 3. Versões --

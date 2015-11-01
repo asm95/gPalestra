@@ -1,0 +1,4 @@
+Nome: Palestrante1.
+Disponibilidade: Ter, 01/09/2015, 10:00-12:00; Qua, 20/09/2015, 8:00-9:30.
+Nome: Palestrante2.
+Disponibilidade: Dom, 01/09/2015, 12:00-14:00; Qui, 03/09/2015, 7:00-9:30; Seg, 18/10/2015, 14:00-16:30.

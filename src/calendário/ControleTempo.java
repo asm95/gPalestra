@@ -1,4 +1,4 @@
-package modulos;
+package calendário;
 
 import java.time.LocalDateTime;
 import java.util.Iterator;
@@ -7,8 +7,23 @@ import java.util.LinkedList;
 
 import palestra.Palestra;
 
+/**
+ * <h1> ControleTempo <h1>
+ * Este módulo tem por seu objetivo marcar os eventos no calendário
+ * conforme as cirunstâncias. Se há disponibilidade de um palestrante
+ * para uma palestra, o evento está alocado. Se há local para a palestra
+ * neste horário, o evento está confirmado.
+ * @author 	Marcos
+ * @version 0.1
+ * @since	2015-09-19
+ */
 public class ControleTempo {
 
+	/**
+	 * 
+	 * @param LinkedList<Palestra>
+	 * @return
+	 */
 	public static Calendario organizaPalestras(LinkedList<Palestra> palestras) {
 		Calendario calendario = new Calendario();
 		calendario.setMeses(new LinkedHashMap<String,AnoMesCalendario>());

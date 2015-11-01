@@ -3,7 +3,9 @@ package localidade;
 public class Responsavel {
 	private String 	nome;
 	private String 	email;
-	private int		numero;
+	private int[]	numero;
+	
+	
 	
 	public String getNome() {
 		return nome;
@@ -20,11 +22,11 @@ public class Responsavel {
 		this.email = email;
 	}
 	
-	public int getNumero() {
+	public int[] getNumero() {
 		return numero;
 	}
 	
-	public void setNumero(int numero){
+	public void setNumero(int[] numero){
 		this.numero = numero;
 	}
 }

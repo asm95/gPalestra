@@ -3,11 +3,12 @@ package ps_trab1;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 
-import modulos.Calendario;
-import modulos.ControleTempo;
-import modulos.Persistencia;
+import calendário.Calendario;
+import calendário.ControleTempo;
+import calendário.Persistencia;
 import palestra.Palestra;
 import palestrante.Palestrante;
+import localidade.Localidade;
 
 public class Principal {
 	
@@ -16,6 +17,8 @@ public class Principal {
 		LinkedHashMap<String,Palestrante> palestrantes = Palestrante.lePalestrantes("Palestrantes.txt");
 		
 		LinkedList<Palestra> palestras = Palestra.lePalestras("Palestras.txt", palestrantes);
+		
+		LinkedHashMap<String,Localidade> localidades = Localidade.leLocalidades("Localidade");
 		
 		Calendario calendario = ControleTempo.organizaPalestras(palestras);
 		
