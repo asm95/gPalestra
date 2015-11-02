@@ -8,12 +8,13 @@ import java.util.Scanner;
 
 import palestra.TratamentoDados;
 import palestrante.Palestrante;
+import localidade.Localidade;
 
 public class Palestra {
 	private String nome;
 	private Palestrante palestrante;
 	private String tema;
-	private String local;
+	private Localidade local;
 	private long duracaoMinutos;
 	
 	public String getNome() {
@@ -34,10 +35,10 @@ public class Palestra {
 	public void setTema(String tema) {
 		this.tema = tema;
 	}
-	public String getLocal() {
+	public Localidade getLocal() {
 		return local;
 	}
-	public void setLocal(String local) {
+	public void setLocal(Localidade local) {
 		this.local = local;
 	}
 	public long getDuracaoMinutos() {
@@ -55,7 +56,7 @@ public class Palestra {
 		Dom, Seg, Ter, Qua, Qui, Sex, Sab
 	}
 	
-	public static LinkedList<Palestra> lePalestras (String arq, LinkedHashMap<String,Palestrante> palestrantes) {
+	public static LinkedList<Palestra> lePalestras (String arq, LinkedHashMap<String,Palestrante> palestrantes, LinkedList<Localidade>localidades) {
 		LinkedList<Palestra> palestras = new LinkedList<Palestra>();
 		try {
 	    	scan = new Scanner(new File(arq));
@@ -87,7 +88,10 @@ public class Palestra {
 				            			linha = scan.nextLine();
 						            	numeroLinha ++;
 						            	if(linha.startsWith("Local: ")) {
-						            		novaPalestra.setLocal(TratamentoDados.localPalestra(linha));
+						            		novaPalestra.setLocal(TratamentoDados.localPalestra(linha, localidades));
+						            		if (novaPalestra.getLocal() == null){
+						            			throw new IllegalArgumentException("Localidade não identificada na linha " + numeroLinha + " do arquivo " + arq);
+						            		}
 						            		
 						            		if(scan.hasNextLine()) {
 						            			linha = scan.nextLine();

@@ -1,7 +1,16 @@
-package calendário;
+package calendario;
 
 import java.util.LinkedHashMap;
 
+/**
+ * Módulo que representa objeto do tipo AnoMes.
+ * Sua abragência é como se fosse uma lista com pastas entituladas
+ * de acordo com o ano e o mês do evento.
+ * Ex: 10/2015, 11/2015, ...
+ * @author 	Marcos
+ * @since 	0.1
+ *
+ */
 public class AnoMesCalendario {
 
 	private int ano;

@@ -1,8 +1,10 @@
 package palestra;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 
 import palestrante.Palestrante;
+import localidade.Localidade;
 
 public class TratamentoDados {
 	public static String nomePalestra(String linha) {
@@ -20,9 +22,16 @@ public class TratamentoDados {
 		return linha.replace("Tema: ","").replace(".","");
 	}
 	
-	public static String localPalestra(String linha) {
-		System.out.println(linha.replace("Local: ","").replace(".",""));
-		return linha.replace("Local: ","").replace(".","");
+	public static Localidade localPalestra(String linha, LinkedList<Localidade> localidades) {
+		linha = linha.replace("Local: ","").replace(".","");
+		
+		for(Localidade loc:localidades){
+			
+			if (loc.getEndereço().equals(linha))
+				return loc;
+		}
+		
+		return null;
 	}
 	
 	public static long duracaoMinutosPalestra(String linha) {

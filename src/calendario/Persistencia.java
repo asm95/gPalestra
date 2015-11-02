@@ -1,12 +1,22 @@
-package calendário;
+package calendario;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.util.Iterator;
 
+/**
+ * Recebe objeto do tipo calendário e escreve um arquivo em formato de Linha do Tempo com palestras marcadas
+ * @author Marcos
+ *
+ */
 public class Persistencia {
 
+	/**
+	 * 
+	 * @param calendario
+	 * @param arquivo para escrita
+	 */
 	public static void geraArquivoCalendario(Calendario calendario, String arq) {
 		Iterator<String> itMeses = calendario.getMeses().keySet().iterator();
 		if (itMeses.hasNext()) {
@@ -35,7 +45,7 @@ public class Persistencia {
 						Iterator<LocalDateTime> itHoras = diaCal.getHoras().keySet().iterator();
 						while(itHoras.hasNext()) {
 							HoraCalendario horaCal = diaCal.getHoras().get(itHoras.next());
-							writer.println(horaCal.getPalestra().getNome() + " (" + horaCal.getPalestrante().getNome() + "): " +
+							writer.println(horaCal.getPalestra().getNome() + " (" + horaCal.getPalestrante().getNome() + ") (" + horaCal.getPalestra().getLocal().getEndereço() + "): " + 
 									String.format("%02d",horaCal.getDataHoraInicio().getHour()) + ":" +
 									String.format("%02d",horaCal.getDataHoraInicio().getMinute()) + "-" +
 									String.format("%02d",horaCal.getDataHoraFim().getHour()) + ":" +

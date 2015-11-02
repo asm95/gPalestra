@@ -18,7 +18,7 @@ de facilitar a interação alunos-monitor peçamos que seja feita a leitura
 do pdf.
 
 -- 1. Como Compilar --
-Não se esqueça de:
+! Não se esqueça de:
 a) Possuir o JDK 8. Para instalar utilize os seguintes comandos:
 
 sudo add-apt-repository ppa:webupd8team/java
@@ -31,23 +31,43 @@ http://www.eclipse.org/downloads/index.php?show_instructions=TRUE
 
 c) Importar o projeto no Eclipse:
 > Abra o Eclipse
-> Vá em File > Import > Existing projects into workspace
-> Selecione a pasta onde você extraiu o arquivo .zip
+> Vá em File > Import > General > Archive File
+> Selecione o .zip que foi baixado do Moodle
+> Ele deve importar todas as preferências do projeto, caso não o faça
+contate o responsável pelo envio.
 
-Obs: Certifique-se que os arquivos .classpath e .project estejam na raiz
-da pasta extraida. Caso contrário, o projeto não poderá ser executado.
+Obs: Geralmente a dependência de nosso projeto, JUnit 4, já vem instalada no Eclipse.
 
-Obs: As dependências são o JUnit 4 e JRE 8.
+! Agora, com o projeto devidamente importado, você está pronto para compila-lo na IDE.
+
+a) Vá em File > Export > Runnable JAR file
+> Em "Launch configuration" você poderá escolher o programa para rodar
+no modo normal (Principal - gPalestra) ou modo JUnit (test_runner - gPalestra)
+
+> Clique em Finish e tudo estará certo
 
 -- 2. Como usar --
-a) Após importado o projeto no Eclipse
+! Nosso arquivo comprimido já com o com o .jar se houver algum inconveniente  na hora
+de compilar.
+
+a) Abra o terminal
+b) Vá até a pasta onde você importou o .zip com o Eclipse usando o comando "cd"
+c) Entre com o comando:
+java -jar gPalestra.jar
 
 
-	
+Obs: Se no terminal aparecer algumas letras estranhas, é porque você está executando
+este programa no Windows, provavelmente. Ele foi desenvolvido em Unix, então peçamos
+que o use de preferência. Até porque eu (desenvolvedor) já enfrentei alguns problemas
+com o mesmo enquanto programava, porém não tenho nada contra - só inexperiência.
+
+
 ! O programa irá ler do arquivo Palestrantes.txt, Palestras.txt e Localidades.txt
-na raiz do  a fim de
-gerar um arquivo saída ao usuário contendo uma lista, em ordem cronológica,
-das palestras a serem realizadas.
+na raiz do a fim de gerar um arquivo saída ao usuário contendo uma lista, em ordem cronológica,
+das palestras confirmadas com sucesso.
+
+! Caso alguma palestra não possa ser alocada, o programa automaticamente interrompe o
+processamento e envia uma exceção (erro) detalhando qual palestra não pôde ser alocada.
 
 
 -- 3. Versões --
@@ -57,17 +77,12 @@ em C cancelada (vide relatório em pdf), porém com implementação de módulo d
 CUnit para funcionalidade de leitura e tratamento de dados. E versão Java com todos
 os módulos implementados (programa funcional), todavia sem módulo JUnit.
 
+0.2 -	Nesta implementamos testes básicos do JUnit, documentação em JavaDoc, rodamos
+o FindBugs para coletar erros estáticos no projeto (laudo no .zip) e incluímos o
+componente localidade, bem como reformulamos toda a estrutura do mesmo.
 
--- 4. Informações Extras (informal) --
-Referente a versão C:
-Muita coisa pra fazer, só a parte de leitura já foi uma dor de cabeça. O programa
-já ficou imenso só nesta parte. Porém já tem muita base pra se desenvolver
-futuramente, como módulos para criação e manipulação de streams, listas e
-dicionários. Como já foi feito a parte de entrada, a de saída seria análoga.
-Há muita coisa repetida no código (parte de uso destes módulos base), mas
-poderiam ser enxugadas futuramente. Algo foi feito na corrida (aprox. 21 horas
-de trabalho total) porque há muita outas coisas pra se preocupar na UnB.
+-- 4. Informações Extras --
 
 
-Considera-se que o 'TP1' de Programação Sistemática foi um sucesso.
+Considera-se que o 'TP2' de Programação Sistemática foi um sucesso.
 

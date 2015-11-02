@@ -5,7 +5,11 @@ public class Responsavel {
 	private String 	email;
 	private int[]	numero;
 	
-	
+	public Responsavel (){
+		nome = "Desconhecido";
+		email = "Desconhecido";
+		numero = new int[]{0};
+	}
 	
 	public String getNome() {
 		return nome;

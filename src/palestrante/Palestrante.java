@@ -50,7 +50,7 @@ public class Palestrante {
 		            	linha = scan.nextLine();
 		            	numeroLinha ++;
 			            if(linha.startsWith("Disponibilidade: ")) {
-			            	novoPalestrante.setDisponibilidade(TratamentoDados.disponibilidadePalestrante(linha));
+			            	novoPalestrante.setDisponibilidade(TratamentoDados.ajustaDisponibilidade(linha));
 			            	palestrantes.put(novoPalestrante.getNome(), novoPalestrante);
 			            } else {
 			            	throw new IllegalArgumentException("Esperado \"Disponibilidade: \" na linha " + numeroLinha + " do arquivo " + arq);
